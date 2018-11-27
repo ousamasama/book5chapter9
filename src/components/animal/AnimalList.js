@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import dog from "./DogIcon.png"
 import "./animal.css"
+import AnimalCard from "./AnimalCard"
 
 export default class AnimalList extends Component {
 
@@ -49,20 +50,7 @@ export default class AnimalList extends Component {
                 <section className="animals list">
                     {
                         this.props.animals.map(animal =>
-                            <div key={animal.id} className="card">
-                                <div className="card-body">
-                                    <h5 className="card-title">
-                                        <img src={dog} className="icon--dog" />
-                                        <p>Pet Name: {animal.name}</p>
-                                        <p>Breed: {animal.breed}</p>
-                                        {this.animalOwners(animal)}
-                                        <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
-                                        <a href="#"
-                                            onClick={() => this.props.deleteAnimal(animal.id)}
-                                            className="card-link">Delete</a>
-                                    </h5>
-                                </div>
-                            </div>
+                            <AnimalCard key={animal.id} animal={animal} {...this.props} />
                         )
                     }
                 </section>
